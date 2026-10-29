@@ -1,5 +1,15 @@
 # Installation et utilisation
 
+## Utilisation en ligne, sans installation
+
+Pour consulter l’outil sans installer l’extension sur votre propre WordPress, ouvrir directement :
+
+[Suivi du rayonnement solaire et de la couverture nuageuse sur CLOUX.NET](https://www.cloux.net/rayonnement-solaire-couverture-nuageuse/)
+
+Cette utilisation se fait dans le navigateur. Les étapes suivantes concernent uniquement l’installation sur votre propre site WordPress.
+
+[Voir la capture d’exemple du résultat](cloux%20-%20rayonnement%20solaire.png). Cette capture est statique ; ses valeurs ne sont pas des données en temps réel.
+
 ## Télécharger la version 3.1.7
 
 [Télécharger cloux-net-suivi-solaire-3.1.7.zip](../cloux-net-suivi-solaire-3.1.7.zip?raw=true)

@@ -2,6 +2,20 @@
 
 Extension WordPress CLOUX.NET utilisant Open-Meteo pour afficher le rayonnement diffus, la couverture nuageuse et les horaires solaires d’une localisation.
 
+## Utiliser sans installation
+
+L’outil est utilisable directement dans le navigateur sur CLOUX.NET, sans installer l’extension sur votre propre site :
+
+[Ouvrir le suivi du rayonnement solaire et de la couverture nuageuse](https://www.cloux.net/rayonnement-solaire-couverture-nuageuse/)
+
+L’installation WordPress décrite ci-dessous concerne uniquement les personnes qui souhaitent héberger l’outil sur leur propre site.
+
+## Aperçu du résultat
+
+[![Aperçu du suivi solaire : sélection de localisation et de date, cartes journalières, graphiques du rayonnement diffus et de la couverture nuageuse, puis tableau horaire](docs/cloux%20-%20rayonnement%20solaire.png)](https://www.cloux.net/rayonnement-solaire-couverture-nuageuse/)
+
+Capture d’exemple : les valeurs affichées correspondent à la date et à la localisation de la capture, pas à des données actualisées en temps réel. Cliquer sur l’aperçu pour ouvrir l’outil en ligne.
+
 ## Télécharger et installer
 
 Version disponible : 3.1.7 — PHP 7.4 minimum.
