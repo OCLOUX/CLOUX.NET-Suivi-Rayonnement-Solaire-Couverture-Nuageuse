@@ -1,6 +1,11 @@
 # Suivi du rayonnement solaire et de la couverture nuageuse
 
-Extension WordPress CLOUX.NET utilisant Open-Meteo pour afficher le rayonnement diffus, la couverture nuageuse et les horaires solaires d’une localisation.
+-> Le but est de permettre une mise en relation entre le rayonnement diffus d'une position (GPS ou niveau d'une ville) et le chargement d'un panneau solaire.
+
+- Extension WordPress CLOUX.NET utilisant Open-Meteo pour afficher le rayonnement diffus, la couverture nuageuse et les horaires solaires d’une localisation.
+- Utilisation direct.
+
+
 
 ## Utiliser sans installation
 
