@@ -11,7 +11,7 @@
 
 L’outil est utilisable directement dans le navigateur sur CLOUX.NET, sans installer l’extension sur votre propre site :
 
-[Ouvrir le suivi du rayonnement solaire et de la couverture nuageuse](https://www.cloux.net/rayonnement-solaire-couverture-nuageuse/)
+[CLOUX.NET Ouvrir le suivi du rayonnement solaire et de la couverture nuageuse](https://www.cloux.net/rayonnement-solaire-couverture-nuageuse/)
 
 L’installation WordPress décrite ci-dessous concerne uniquement les personnes qui souhaitent héberger l’outil sur leur propre site.
 
