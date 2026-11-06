@@ -1,53 +1,35 @@
 # Suivi du rayonnement solaire et de la couverture nuageuse
 
--> Le but est de permettre une mise en relation entre le rayonnement diffus d'une position (GPS ou niveau d'une ville) et le chargement d'un panneau solaire.
-
-- Extension WordPress CLOUX.NET utilisant Open-Meteo pour afficher le rayonnement diffus, la couverture nuageuse et les horaires solaires d’une localisation.
-- Utilisation direct.
-
-
+Extension WordPress CLOUX.NET utilisant Open-Meteo pour suivre le rayonnement solaire d’une ville ou d’une position GPS et éclairer l’analyse de la recharge solaire. Elle ne calcule pas la production électrique, la recharge ou l’autonomie d’une batterie.
 
 ## Utiliser sans installation
 
-L’outil est utilisable directement dans le navigateur sur CLOUX.NET, sans installer l’extension sur votre propre site :
-
-[CLOUX.NET Ouvrir le suivi du rayonnement solaire et de la couverture nuageuse](https://www.cloux.net/rayonnement-solaire-couverture-nuageuse/)
-
-L’installation WordPress décrite ci-dessous concerne uniquement les personnes qui souhaitent héberger l’outil sur leur propre site.
-
-## Aperçu du résultat
-
-[![Aperçu du suivi solaire : sélection de localisation et de date, cartes journalières, graphiques du rayonnement diffus et de la couverture nuageuse, puis tableau horaire](docs/cloux%20-%20rayonnement%20solaire.png)](https://www.cloux.net/rayonnement-solaire-couverture-nuageuse/)
-
-Capture d’exemple : les valeurs affichées correspondent à la date et à la localisation de la capture, pas à des données actualisées en temps réel. Cliquer sur l’aperçu pour ouvrir l’outil en ligne.
+[Ouvrir l’outil sur CLOUX.NET](https://www.cloux.net/rayonnement-solaire-couverture-nuageuse/)
 
 ## Télécharger et installer
 
-Version disponible : 3.1.7 — PHP 7.4 minimum.
+Version disponible : 3.1.10 — PHP 7.4 minimum.
 
-[Télécharger le ZIP de l’extension](cloux-net-suivi-solaire-3.1.7.zip?raw=true)
+[Télécharger le ZIP installable](cloux-net-suivi-solaire-3.1.10.zip?raw=true)
 
-1. Télécharger ce ZIP, sans le décompresser pour le téléversement WordPress.
-2. Dans WordPress : Extensions > Ajouter une extension > Téléverser une extension.
-3. Sélectionner cloux-net-suivi-solaire-3.1.7.zip, puis installer ou remplacer la version existante après sauvegarde.
-4. Activer l’extension si nécessaire et ajouter [suivi_solaire] dans un bloc Code court.
+Sauvegarder l’existant, puis téléverser ce ZIP dans WordPress : Extensions > Ajouter une extension > Téléverser une extension. Remplacer la copie existante et conserver une seule extension active. Ajouter `[suivi_solaire]` dans un bloc Code court. Ne pas utiliser Code > Download ZIP : cette archive contient le dépôt entier.
 
-Ne pas utiliser Code > Download ZIP pour cette installation : cette commande télécharge le dépôt entier, pas seulement le paquet de l’extension.
+## Graphiques, dans l’ordre d’affichage
 
-## Contenu disponible
+1. Rayonnement global horizontal : `shortwave_radiation`, W/m², moyenne sur l’heure précédente.
+2. Rayonnement diffus instantané : `diffuse_radiation_instant`, W/m².
+3. Couverture nuageuse : `cloud_cover`, %.
+4. Énergie solaire quotidienne : `shortwave_radiation_sum`, MJ/m², histogramme journalier.
 
-Le paquet installable est présent à la racine du dépôt. D’après les fichiers fournis pour cette version, il contient le PHP de l’extension, readme.txt et CONTROLES.txt. Les sources sont distribuées dans ce ZIP ; elles ne sont pas encore versionnées séparément dans l’arborescence du dépôt.
-
-La présence du ZIP distant a été vérifiée. Son contenu n’a pas été extrait et comparé aux pièces jointes lors de cette mise à jour documentaire.
+Les trois courbes horaires disposent de filtres de période et d’infobulles. L’histogramme quotidien présente le jour précédent, le jour sélectionné et le jour suivant, indépendamment des filtres horaires.
 
 ## Fonctions
 
-- Localisation par ville ou coordonnées GPS.
-- Cartes du jour précédent, du jour sélectionné et du lendemain.
-- Lever, coucher, durée du jour et durée d’ensoleillement.
-- Graphiques SVG du rayonnement diffus et de la couverture nuageuse avec infobulles.
-- Tableau horaire et filtres de période.
-- Calendrier, flèches et bouton Aujourd’hui ; chargement automatique au changement de date.
+- Localisation par ville ou GPS.
+- Cartes journalières : lever, coucher, durée du jour, ensoleillement et énergie solaire.
+- Tableau horaire : nuages, rayonnement global horizontal et rayonnement diffus instantané.
+- Calendrier de J−92 à aujourd’hui, flèches et bouton Aujourd’hui ; disponibilité des données dépendante de l’API.
+- Rechargement au changement de date ou de localisation.
 - Distinction des données passées modélisées et des prévisions.
 
 ## Exemples
@@ -59,7 +41,13 @@ La présence du ZIP distant a été vérifiée. Son contenu n’a pas été extr
 [suivi_solaire charts="0"]
 ```
 
-L’alias [openmeteo_weather] reste accepté.
+L’alias `[openmeteo_weather]` reste accepté.
+
+## Aperçu
+
+[![Capture historique du suivi solaire](docs/cloux%20-%20rayonnement%20solaire.png)](https://www.cloux.net/rayonnement-solaire-couverture-nuageuse/)
+
+Cette capture historique n’a pas été actualisée pour la 3.1.10 : elle peut ne pas montrer les quatre graphiques. Ses valeurs ne sont pas des données en temps réel.
 
 ## Documentation
 
@@ -67,12 +55,12 @@ L’alias [openmeteo_weather] reste accepté.
 - [Données, API et limites](docs/DONNEES.md)
 - [Contrôles et historique](docs/CONTROLES.md)
 
-## Limites et périmètre
+## Distribution et limites
 
-Les données météo sont modélisées, pas mesurées par un capteur local. Le rayonnement diffus ne représente pas à lui seul la production totale d’un panneau. Aucun calcul de recharge ou d’autonomie n’est inclus. Le tableau de bord batterie/tension MeshCore et son iframe constituent un autre composant.
+Les sources sont distribuées dans le ZIP, pas séparément dans l’arborescence du dépôt. La présence du ZIP distant a été vérifiée ; son contenu n’a pas été extrait et comparé lors de cette mise à jour documentaire.
 
-L’ajout du ZIP ne rend pas le dépôt public et ne déploie rien sur WordPress. L’accès au téléchargement dépend de la visibilité du dépôt et des droits du visiteur.
+Les données sont modélisées, pas mesurées par un capteur local. Le rayonnement horizontal ne décrit pas directement la production d’un panneau incliné. Le tableau de bord batterie/tension MeshCore et son iframe constituent un composant distinct. Publier le ZIP sur GitHub ne met pas WordPress à jour et ne change pas la visibilité du dépôt.
 
 ## Licence et attribution
 
-Le PHP fourni déclare GPLv2 ou ultérieure. Conserver l’attribution Open-Meteo et la mention CC BY 4.0 présente dans l’extension ; vérifier les conditions applicables au service pour l’usage envisagé.
+Le PHP déclare GPLv2 ou ultérieure. Conserver l’attribution Open-Meteo et la mention CC BY 4.0 de l’extension ; vérifier les conditions du service pour l’usage envisagé.

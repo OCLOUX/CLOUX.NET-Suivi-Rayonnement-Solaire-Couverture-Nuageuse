@@ -1,39 +1,40 @@
-# Données, API et limites
+# Données, API et limites — 3.1.10
 
-## Sources du code fourni
+## Fournisseur
 
-L’extension appelle Open-Meteo côté serveur via les fonctions HTTP WordPress. La géolocalisation par nom utilise le service de géocodage Open-Meteo ; les coordonnées saisies sont validées séparément.
+L’extension appelle Open-Meteo côté serveur avec les fonctions HTTP WordPress. Les noms de ville sont résolus par le géocodage Open-Meteo ; les coordonnées saisies sont validées séparément.
 
-Variables demandées par le code :
+Endpoint météo : https://api.open-meteo.com/v1/forecast
 
-| Groupe | Variables |
+Documentation : https://open-meteo.com/en/docs
+
+Paramètres : `models=best_match`, `timezone=auto`, coordonnées et dates de début/fin.
+
+| Groupe | Variables demandées |
 |---|---|
-| hourly | cloud_cover, diffuse_radiation_instant |
-| daily | sunrise, sunset, daylight_duration, sunshine_duration |
+| hourly | cloud_cover, shortwave_radiation, diffuse_radiation_instant |
+| daily | sunrise, sunset, daylight_duration, sunshine_duration, shortwave_radiation_sum |
 | current | is_day |
 
-Le fournisseur météo est https://api.open-meteo.com/v1/forecast avec models=best_match et timezone=auto. La documentation du fournisseur est https://open-meteo.com/en/docs.
+## Ordre des graphiques
 
-## Lecture des résultats
+1. `shortwave_radiation` : rayonnement global horizontal, composantes directe sur l’horizontale et diffuse ; W/m², moyenne sur l’heure précédente.
+2. `diffuse_radiation_instant` : rayonnement diffus instantané à l’heure indiquée ; W/m². Sa convention temporelle diffère de celle du global horaire.
+3. `cloud_cover` : couverture nuageuse ; %.
+4. `shortwave_radiation_sum` : énergie solaire globale quotidienne sur une surface horizontale ; MJ/m².
 
-- cloud_cover : couverture nuageuse en pourcentage.
-- diffuse_radiation_instant : rayonnement diffus instantané en W/m² à l’heure indiquée, échantillonné dans la série horaire.
-- daylight_duration et sunshine_duration : durées en secondes converties pour l’affichage.
-- Les données passées sont des valeurs modélisées, pas les mesures d’un capteur local.
-- Une valeur absente doit rester absente, sans conversion en zéro.
+Les trois premières séries sont des courbes horaires. La quatrième est un histogramme avec une valeur par jour, sans interpolation horaire : jour précédent, jour sélectionné et jour suivant. Il reste indépendant des filtres horaires. Une date future est signalée comme prévisionnelle. Une donnée absente reste indisponible, sans conversion en zéro.
 
-Le fuseau météo est obtenu dans la réponse de l’API. Le code construit le contexte temporel utilisé pour les graphiques et leurs horodatages. Les bornes du calendrier utilisent la date WordPress : vérifier le fuseau configuré sur le site, notamment si la localisation météo est distante.
+La somme quotidienne est aussi affichée dans les cartes. Le tableau horaire contient les nuages et les deux rayonnements. Les durées de jour et d’ensoleillement sont reçues en secondes puis formatées pour l’affichage.
 
-## Cache et disponibilité
+## Fuseaux et disponibilité
 
-Le contenu météo est mis en cache par coordonnées et fenêtre de dates. Le géocodage est mis en cache 24 heures. La route AJAX utilise un cache de contenu de 15 minutes. Une modification de code ne signifie pas que des données plus récentes sont immédiatement disponibles.
+Les graphiques utilisent le fuseau de la réponse météo. Les bornes du calendrier reposent sur la date WordPress : vérifier le fuseau du site si la localisation est distante. La sélection va de J−92 à aujourd’hui ; cette plage ne garantit pas la disponibilité de chaque variable. Les erreurs HTTP, réponses invalides et absences de données exploitables sont signalées.
 
-La plage autorisée par l’interface ne garantit pas la disponibilité effective de toutes les variables Open-Meteo. Le code signale les erreurs HTTP, les réponses invalides et l’absence de données exploitables pour le jour choisi.
+## Cache
 
-## Photovoltaïque : hors périmètre de la 3.1.7
+Cache météo par coordonnées et fenêtre de dates : préfixe `omw_319_`, conservé en 3.1.10. Cache initial configurable par l’attribut `cache`, minimum une minute. Le rechargement via la route REST utilise 15 minutes. Géocodage : 24 heures. Ces caches sont distincts des caches de page, du navigateur ou du CDN.
 
-Ne pas assimiler le rayonnement diffus seul à la production totale d’un panneau. Aucun calcul de production d’un panneau de 5 W, d’énergie stockée ou de temps de recharge n’est inclus. Les paramètres de panneau incliné discutés séparément ne sont pas présents dans cette version.
+## Limites photovoltaïques
 
-## Télémétrie et iframe
-
-Le HTML batterie/tension, ses données JSON et son code iframe à hauteur automatique ne font pas partie de l’extension documentée ici. Leur intégration doit être versionnée séparément et ne doit pas être annoncée comme une fonction incluse dans le PHP.
+Les données sont modélisées et non des mesures locales. W/m² désigne une puissance par surface ; MJ/m² une énergie par surface. Ces grandeurs ne sont pas la production électrique d’un panneau. Aucun calcul de panneau incliné, de pertes électriques, d’énergie stockée, de temps de recharge ou d’autonomie n’est inclus. Le composant batterie/tension MeshCore et son iframe sont distincts.

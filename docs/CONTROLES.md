@@ -1,54 +1,42 @@
 # Contrôles et historique
 
-## Distribution de la version 3.1.7
+## Distribution actuelle
 
-Le fichier cloux-net-suivi-solaire-3.1.7.zip a été ajouté manuellement à la racine du dépôt. Sa présence a été vérifiée via GitHub : taille déclarée 15 429 octets.
+Le 6 novembre 2026, GitHub déclare `cloux-net-suivi-solaire-3.1.10.zip` à la racine : 16 205 octets. Les sources sont distribuées dans l’archive et non séparément dans l’arborescence du dépôt. Le ZIP distant n’a pas été extrait et comparé lors de cette mise à jour documentaire ; sa présence ne valide ni son contenu ni son installation.
 
-Les trois fichiers fournis séparément pour cette version sont le PHP de l’extension, le fichier de présentation et les notes de contrôle. Les sources sont distribuées dans le ZIP ; elles ne sont pas encore présentes comme fichiers séparés dans l’arborescence du dépôt.
+## Contrôles de préparation de la 3.1.10
 
-Le ZIP distant n’a pas été extrait et comparé aux pièces jointes lors de cette mise à jour documentaire. Sa présence sur GitHub ne constitue pas une validation de son contenu ni un test d’installation.
+- Base : PHP 3.1.9 fourni.
+- Suppression du paragraphe explicatif du graphique quotidien et mise à jour de version.
+- JavaScript extrait : `node --check` réussi.
+- ZIP généré : contenu PHP relu et intégrité CRC vérifiée.
+- PHP indisponible : aucun `php -l` ni test d’exécution PHP.
+- Aucun test d’installation WordPress de la 3.1.10 effectué par l’assistant.
 
-## Empreinte du PHP fourni
+Ces contrôles concernent les fichiers préparés, pas une nouvelle extraction du ZIP distant. La vérification de la page en 3.1.8 ne constitue pas une recette de la 3.1.10.
 
-Nom d’installation : cloux-net-suivi-solaire.php.
-
-SHA-256 du fichier PHP fourni et contrôlé précédemment :
-
-```text
-588dfc9ebc338be309e4849c091bfcc24fd15f69224b3becdd606e2a3b052f9e
-```
-
-Cette empreinte concerne le PHP joint, pas le ZIP distant.
-
-## Contrôles réalisés le 29 octobre 2026
-
-- Version 3.1.7 vérifiée dans l’en-tête du PHP fourni.
-- JavaScript extrait du PHP : node --check réussi dans l’environnement de préparation.
-- PHP indisponible : aucun php -l ni test d’exécution PHP réalisé.
-- Aucun test navigateur, WordPress complet ou appel API réel validé lors de la préparation documentaire.
-
-Les notes jointes antérieures annoncent une comparaison des fonctions de rendu et une vérification du ZIP préparé à ce moment-là. Elles ne constituent pas un nouveau contrôle du ZIP téléversé manuellement sur GitHub. Les scripts de test ne sont pas versionnés dans le dépôt.
-
-## Historique de présentation
+## Historique
 
 - 3.1.4 : localisation sur la ligne du libellé et calendrier à droite.
-- 3.1.5 : suppression d’Afficher, changement automatique de date et alignement d’Aujourd’hui sur le début du champ de localisation.
-- 3.1.6 : police du calendrier reprise du champ de localisation et fin du groupe calendrier alignée sur la fin de ce champ.
-- 3.1.7 : champ date de 118 px, flèches de 10 px dans des boutons de 26 × 26 px, espacement de 4 px et marge de l’icône native ajustée sur les moteurs compatibles.
+- 3.1.5 : suppression du bouton Afficher, changement automatique de date, alignement d’Aujourd’hui.
+- 3.1.6 : police et alignement du calendrier.
+- 3.1.7 : champ date de 118 px, flèches de 10 px, boutons de 26 × 26 px, espacement de 4 px.
+- 3.1.8 : remplacement du diffus par le global horaire, ajout de l’énergie quotidienne dans les cartes ; pas encore de graphique quotidien.
+- 3.1.9 : rétablissement du diffus, ajout de l’histogramme quotidien et de la colonne diffus du tableau ; cache météo `omw_319_`. Ordre : global, diffus, nuages, énergie quotidienne.
+- 3.1.10 : suppression du paragraphe explicatif sous le titre du graphique quotidien ; graphiques et ordre inchangés.
 
 ## Recette à effectuer
 
-1. Extraire le ZIP téléchargé et contrôler les trois fichiers ainsi que le dossier d’installation.
-2. Comparer l’empreinte du PHP à celle indiquée ci-dessus.
-3. Exécuter php -l sur ce PHP.
-4. Installer sur préproduction et contrôler les deux shortcodes.
-5. Tester ville valide, ville inconnue et coordonnées invalides.
-6. Tester Aujourd’hui, flèches, calendrier, borne J−92 et dates hors bornes.
-7. Vérifier graphiques, tableau et valeurs absentes.
-8. Vérifier heures, fuseaux et changements d’heure.
-9. Tester mobile et ordinateur ; l’apparence du calendrier dépend du navigateur.
-10. Simuler une indisponibilité Open-Meteo et contrôler les erreurs REST sans désactiver globalement les protections du site.
+1. Extraire le ZIP et contrôler le dossier, le PHP, readme.txt et CONTROLES.txt.
+2. Exécuter `php -l`, puis installer en préproduction.
+3. Vérifier version, deux shortcodes, ville valide/inconnue et coordonnées invalides.
+4. Tester calendrier, flèches, Aujourd’hui, borne J−92 et rejets hors bornes.
+5. Vérifier l’ordre des quatre graphiques, les unités, les valeurs des cartes et les deux rayonnements du tableau.
+6. Vérifier les filtres horaires, les infobulles et l’indépendance du graphique quotidien.
+7. Tester valeurs nulles, zéros, prévisions, fuseaux et changements d’heure.
+8. Vérifier `charts=0`, mobile/ordinateur et erreurs API/REST.
+9. Confirmer la suppression du paragraphe demandé sans disparition de l’histogramme.
 
-## Sécurité et publication
+## Sécurité et périmètre
 
-Ne pas déposer de jeton GitHub, cookie, mot de passe WordPress ou sauvegarde contenant des secrets. La présence du ZIP ne change pas la visibilité du dépôt. Le passage en public et toute mise en production WordPress restent des actions distinctes. Cette mise à jour documentaire ne modifie ni le ZIP, ni le PHP, ni WordPress.
+Ne pas déposer de jeton, cookie, mot de passe ou sauvegarde contenant des secrets. Cette mise à jour documentaire ne modifie ni le ZIP, ni le PHP, ni WordPress. La publication sur GitHub et la mise en production sont distinctes.
