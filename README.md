@@ -1,16 +1,16 @@
 # Suivi du rayonnement solaire et de la couverture nuageuse
 
-Extension WordPress CLOUX.NET utilisant Open-Meteo pour suivre le rayonnement solaire d’une ville ou d’une position GPS et éclairer l’analyse de la recharge solaire. Elle ne calcule pas la production électrique, la recharge ou l’autonomie d’une batterie.
+Extension WordPress CLOUX.NET utilisant Open-Meteo pour suivre le rayonnement solaire d’une ville ou d’une position GPS et éclairer l’analyse de la recharge solaire. Aucun calcul de production électrique, de recharge ou d’autonomie de batterie n’est inclus.
 
-## Utiliser sans installation
+## Utilisation en ligne
 
 [Ouvrir l’outil sur CLOUX.NET](https://www.cloux.net/rayonnement-solaire-couverture-nuageuse/)
 
 ## Télécharger et installer
 
-Version disponible : 3.1.10 — PHP 7.4 minimum.
+Version disponible : 3.1.11 — PHP 7.4 minimum.
 
-[Télécharger le ZIP installable](cloux-net-suivi-solaire-3.1.10.zip?raw=true)
+[Télécharger le ZIP installable 3.1.11](cloux-net-suivi-solaire-3.1.11.zip?raw=true)
 
 Sauvegarder l’existant, puis téléverser ce ZIP dans WordPress : Extensions > Ajouter une extension > Téléverser une extension. Remplacer la copie existante et conserver une seule extension active. Ajouter `[suivi_solaire]` dans un bloc Code court. Ne pas utiliser Code > Download ZIP : cette archive contient le dépôt entier.
 
@@ -27,7 +27,7 @@ Les trois courbes horaires disposent de filtres de période et d’infobulles. L
 
 - Localisation par ville ou GPS.
 - Cartes journalières : lever, coucher, durée du jour, ensoleillement et énergie solaire.
-- Tableau horaire : nuages, rayonnement global horizontal et rayonnement diffus instantané.
+- Tableau horaire : nuages et deux rayonnements, global et diffus.
 - Calendrier de J−92 à aujourd’hui, flèches et bouton Aujourd’hui ; disponibilité des données dépendante de l’API.
 - Rechargement au changement de date ou de localisation.
 - Distinction des données passées modélisées et des prévisions.
@@ -43,11 +43,17 @@ Les trois courbes horaires disposent de filtres de période et d’infobulles. L
 
 L’alias `[openmeteo_weather]` reste accepté.
 
+## Changements récents
+
+- 3.1.9 : rétablissement du diffus et ajout de l’histogramme quotidien.
+- 3.1.10 : suppression du paragraphe sous le titre du graphique quotidien.
+- 3.1.11 : suppression du paragraphe « Courbe principale… » avant les graphiques ; les données, les quatre graphiques et leur ordre sont conservés.
+
 ## Aperçu
 
 [![Capture historique du suivi solaire](docs/cloux%20-%20rayonnement%20solaire.png)](https://www.cloux.net/rayonnement-solaire-couverture-nuageuse/)
 
-Cette capture historique n’a pas été actualisée pour la 3.1.10 : elle peut ne pas montrer les quatre graphiques. Ses valeurs ne sont pas des données en temps réel.
+Capture historique non actualisée pour la 3.1.11 : elle peut ne pas montrer les quatre graphiques. Ses valeurs ne sont pas en temps réel.
 
 ## Documentation
 
