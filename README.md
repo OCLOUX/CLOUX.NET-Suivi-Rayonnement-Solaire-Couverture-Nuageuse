@@ -1,3 +1,5 @@
+![Suivi du rayonnement solaire sur CLOUX.NET](docs/cloux%20-%20rayonnement%20solaire.png)
+
 # Suivi du rayonnement solaire et de la couverture nuageuse
 
 Extension WordPress CLOUX.NET utilisant Open-Meteo pour suivre le rayonnement solaire d’une ville ou d’une position GPS et éclairer l’analyse de la recharge solaire. Aucun calcul de production électrique, de recharge ou d’autonomie de batterie n’est inclus.
