@@ -1,4 +1,4 @@
-![Suivi du rayonnement solaire sur CLOUX.NET](docs/cloux%20-%20rayonnement%20solaire.png)
+
 
 # Suivi du rayonnement solaire et de la couverture nuageuse
 
@@ -9,6 +9,8 @@ Extension WordPress CLOUX.NET utilisant Open-Meteo pour suivre le rayonnement so
 ## Utilisation en ligne
 
 [Ouvrir l’outil sur CLOUX.NET](https://www.cloux.net/rayonnement-solaire-couverture-nuageuse/)
+
+![Suivi du rayonnement solaire sur CLOUX.NET](docs/cloux%20-%20rayonnement%20solaire.png)
 
 ## Télécharger et installer
 
